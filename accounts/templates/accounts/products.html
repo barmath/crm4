@@ -1,0 +1,47 @@
+{% extends 'accounts/main.html' %}
+
+{% block content %}
+
+<br>
+
+		<div class="row">
+			<div class="col-md">
+				<div class="card card-body">
+					<h5>Produtos</h5>
+				</div>
+				<div class="card card-body">
+					<a class="btn btn-primary  btn-sm btn-block" href="{% url 'create_product' %}">Criar Produto</a>
+					<table class="table table-striped ">
+						<tr>
+							<th>Código</th>
+							<th>Produto</th>
+							<th>Categoria</th>
+							<th>Preço venda</th>
+							<th>Preço compra</th>
+							<th>Margem</th>
+							<th>Detalhes</th>
+							<th>Data de criação</th>
+							<th>Atualizar</th>
+							<th>Deletar</th>
+						</tr>
+						{% for product in products %}
+							<tr>
+								<td>{{product.id}}</td>
+								<td>{{product.name}}</td>
+								<td>{{product.category}}</td>
+								<td>{{product.price}}</td>
+								<td>{{product.preco_de_compra}}</td>
+								<td>{{product.margem}}</td>
+								<td>{{product.detalhes}}</td>
+								<td>{{product.date_created}}</td>
+								<td><a class = "btn btn-sm btn-info" href="{% url 'update_product' product.id %}">Atualizar</a></td>
+								<td><a class = "btn btn-sm btn-danger" href="{% url 'delete_product' product.id %}">Deletar</a></td>
+							</tr>
+						{% endfor %}
+					</table>
+				</div>
+			</div>
+			
+		</div>
+
+{% endblock %}
